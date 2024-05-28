@@ -3,6 +3,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_tutor/providers/content_provider.dart';
+import 'package:provider/provider.dart';
 
 class MainListViewWidget extends StatefulWidget {
   const MainListViewWidget({super.key});
@@ -56,97 +58,17 @@ class _MainListViewWidgetState extends State<MainListViewWidget> {
                         itemBuilder: (context, index) {
                           final e = data['menus'][index];
                           if (e['menus'] != null && e['menus']!.isNotEmpty && (e['menus'] as List).isNotEmpty) {
-                            return ExpansionTile(
-                              key: Key(e['title']),
-                              expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                              title: Text(
-                                e['title'],
-                                style: const TextStyle(color: Colors.red),
-                              ),
-                              collapsedBackgroundColor: Colors.blue,
-                              initiallyExpanded: true,
-                              expandedAlignment: Alignment.centerLeft,
-                              children: (e['menus'] as List).map((item) {
-                                return ValueListenableBuilder(valueListenable: _selectedIndexTitle, builder: (context, value, child) {
-
-                                return Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 3),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      _selectedIndexTitle.value = item['title'];
-
-                                      debugPrint('tap on : ${item['title'] ?? ""}');
-                                    },
-                                    child: Container(
-                                      width: double.infinity,
-                                      padding: const EdgeInsets.all(2),
-                                      decoration: BoxDecoration(
-                                        borderRadius: const BorderRadius.all(Radius.circular(4)),
-                                        color: _selectedIndexTitle.value == item['title']
-                                            ? Colors.blue
-                                            : Colors.white,
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left: 16.0),
-                                        child: Text(item['title'], style: const TextStyle(color: Colors.black)),
-                                      ),
-                                    ),
-                                  ),
-                                );
-                                });
-                              }).toList(),
-                            );
+                            return _buildExpansionTitle(e);
                           }
 
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 2.0),
-                            child: Text(e['title']),
+                          return GestureDetector(
+                            onTap: () {
+                              _selectedIndexTitle.value = e['title'];
+                              Provider.of<ContentProvider>(context, listen: false).changeMdContent(mdpath: e['mdName']);
+                            },
+                            child: _buildValueListenBuild(e),
                           );
                         },
-                        // children: (data['menus'] as List).map((e) {
-                        //   if (e['menus'] != null && e['menus']!.isNotEmpty && (e['menus'] as List).isNotEmpty) {
-                        //     return ExpansionTile(
-                        //       key: Key(e['title']),
-                        //       expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                        //       title: Text(e['title'], style: const TextStyle(color: Colors.red),),
-                        //       collapsedBackgroundColor: Colors.blue,
-                        //       initiallyExpanded: true,
-                        //       expandedAlignment: Alignment.centerLeft,
-                        //       children:(e['menus'] as List).map((item) {
-                        //               return Padding(
-                        //                 padding: const EdgeInsets.symmetric(vertical: 3),
-                        //                 child: GestureDetector(
-                        //                   onTap: () {
-                        //                     _selectedIndexTitle = item['title'];
-                        //                     debugPrint('tap on : ${item['title'] ?? ""}');
-                        //                     setState(() {
-
-                        //                     });
-                        //                   },
-                        //                   child: Container(
-                        //                     width: double.infinity,
-                        //                     padding: const EdgeInsets.all(2),
-                        //                     decoration: BoxDecoration(
-                        //                       borderRadius: const BorderRadius.all(Radius.circular(4)),
-                        //                       color: _selectedIndexTitle == item['title'] ? Colors.blue : Colors.white,
-                        //                     ),
-                        //                     child: Padding(
-                        //                       padding: const EdgeInsets.only(left: 16.0),
-                        //                       child: Text(item['title'], style: const TextStyle(color: Colors.black)),
-                        //                     ),
-                        //                   ),
-                        //                 ),
-                        //               );
-                        //             }).toList(),
-
-                        //     );
-                        //   }
-
-                        //   return Padding(
-                        //     padding: const EdgeInsets.symmetric(vertical: 2.0),
-                        //     child: Text(e['title']),
-                        //   );
-                        // }).toList(),
                       ),
                     )
                   ],
@@ -156,6 +78,53 @@ class _MainListViewWidgetState extends State<MainListViewWidget> {
           return Container();
         }
       },
+    );
+  }
+
+  ValueListenableBuilder<String> _buildValueListenBuild(e) {
+    return ValueListenableBuilder(
+        valueListenable: _selectedIndexTitle,
+        builder: (context, value, child) {
+          return Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(2),
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(4)),
+              color: _selectedIndexTitle.value == e['title'] ? Colors.blue : Colors.white,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Text(e['title'], style: const TextStyle(color: Colors.black)),
+            ),
+          );
+        });
+  }
+
+  ExpansionTile _buildExpansionTitle(e) {
+    return ExpansionTile(
+      key: Key(e['title']),
+      shape: Border.all(color: Colors.transparent),
+      expandedCrossAxisAlignment: CrossAxisAlignment.start,
+      title: Text(
+        e['title'],
+        style: const TextStyle(color: Colors.black54, fontSize: 16.0),
+      ),
+      initiallyExpanded: true,
+      expandedAlignment: Alignment.centerLeft,
+      children: (e['menus'] as List).map((item) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 3),
+          child: GestureDetector(
+            onTap: () {
+              _selectedIndexTitle.value = item['title'];
+              Provider.of<ContentProvider>(context, listen: false).changeMdContent(mdpath: item['mdName']);
+
+              debugPrint('tap on : ${item['title'] ?? ""}');
+            },
+            child: _buildValueListenBuild(item),
+          ),
+        );
+      }).toList(),
     );
   }
 }
