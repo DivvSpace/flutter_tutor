@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -16,23 +18,39 @@ class _ContentWidgetState extends State<ContentWidget> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: rootBundle.loadString(widget.mdFilePath),
+      future: Future.delayed(Duration(seconds: 3), () {
+        return rootBundle.loadString(widget.mdFilePath);
+      }),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          return Expanded(
+          if (Platform.isMacOS) {
+            return Expanded(
               child: Markdown(
-            data: snapshot.data ?? '',
-            selectable: false,
-            builders: {'code': CodeElementBuilder()},
-          ));
+                data: snapshot.data ?? '',
+                selectable: false,
+                builders: {'code': CodeElementBuilder()},
+              ),
+            );
+          } else {
+            return Markdown(
+              data: snapshot.data ?? '',
+              selectable: false,
+              builders: {'code': CodeElementBuilder()},
+            );
+          }
         } else {
-          return const Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircularProgressIndicator(),
-              ],
-            ),
+          if (Platform.isMacOS) {
+            return const Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator(),
+                ],
+              ),
+            );
+          }
+          return const Center(
+            child: CircularProgressIndicator(),
           );
         }
       },

@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:flutter_tutor/mac_main_page.dart';
 import 'package:flutter_tutor/pages/main_list.dart';
 import 'package:flutter_tutor/pages/markdown_content.dart';
+import 'package:flutter_tutor/phone_main_page.dart';
 import 'package:flutter_tutor/providers/content_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -36,18 +40,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ChangeNotifierProvider(
-        create: (context) => ContentProvider(),
-        child: Row(children: [
-          Container(color: const Color.fromARGB(255, 228, 226, 226), width: 200,child: const MainListViewWidget()),
-          Consumer<ContentProvider>(
-            builder:(context, contentProvider, child) {
-              return ContentWidget(mdFilePath:'assets/markdown/${contentProvider.mdPath}');
-            }
-          ),
-        ]),
-      ),
-    );
+    if (Platform.isMacOS) {
+        return const MacMainPage();
+    } else if (Platform.isIOS || Platform.isAndroid) {
+        return const PhoneMainPage();
+    }
+    return const Placeholder();
   }
 }
+
+

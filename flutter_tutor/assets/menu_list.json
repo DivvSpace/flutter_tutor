@@ -3,10 +3,6 @@
         "title":"语言",
         "menus": [
             {
-                "title": "介绍",
-                "mdName": "introduction.md"
-            },
-            {
                 "title": "语法基础",
                 "menus": [
                     {
