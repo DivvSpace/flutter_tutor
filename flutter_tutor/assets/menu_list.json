@@ -16,6 +16,10 @@
                     {
                         "title": "注释",
                         "mdName": "comments.md"
+                    },
+                    {
+                        "title": "元数据",
+                        "mdName": "metadata.md"
                     }
                 ]
             }

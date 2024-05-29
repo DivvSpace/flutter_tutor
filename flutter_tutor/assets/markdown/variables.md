@@ -133,6 +133,7 @@ final String nickname = 'Bobby';
 ```dart
 name = 'Alice'; // Error: a final variable can only be set once.
 ```
+
 使用`const`来声明编译时常量变量。如果`const`变量是在类级别声明的，标记为 `static const`。在声明变量时，将其值设为编译时常量，如数字或字符串字面量、`const` 变量或对常量数值的算术操作结果：
 
 ```dart
@@ -170,7 +171,6 @@ const map = {if (i is int) i: 'int'}; // Use is and collection if.
 const set = {if (list is List<int>) ...list}; // ...and a spread.
 ```
 
-:::note
-虽然 `final` 对象不能被修改，但它的字段可以更改。
-相比之下，`const` 对象及其字段不能更改：它们是 _不可变的_。
-:::
+> note
+> 虽然 `final` 对象不能被修改，但它的字段可以更改。
+> 相比之下，`const` 对象及其字段不能更改：它们是 _不可变的_。

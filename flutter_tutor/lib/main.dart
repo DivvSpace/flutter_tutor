@@ -1,13 +1,7 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_tutor/mac_main_page.dart';
-import 'package:flutter_tutor/pages/main_list.dart';
-import 'package:flutter_tutor/pages/markdown_content.dart';
 import 'package:flutter_tutor/phone_main_page.dart';
-import 'package:flutter_tutor/providers/content_provider.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
