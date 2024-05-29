@@ -18,7 +18,7 @@ class _ContentWidgetState extends State<ContentWidget> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: Future.delayed(Duration(seconds: 3), () {
+      future: Future.delayed(const Duration(milliseconds: 500), () {
         return rootBundle.loadString(widget.mdFilePath);
       }),
       builder: (context, snapshot) {
