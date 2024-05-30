@@ -20,6 +20,10 @@
                     {
                         "title": "元数据",
                         "mdName": "metadata.md"
+                    },
+                    {
+                        "title": "库 & 导入",
+                        "mdName": "librariesimports.md"
                     }
                 ]
             }
