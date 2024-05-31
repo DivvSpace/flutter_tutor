@@ -44,58 +44,42 @@ var constantList = const [1, 2, 3];
 // constantList[1] = 1; // This line will cause an error.
 ```
 
-For more information about lists, refer to the Lists section of the
-[`dart:core` documentation](/libraries/dart-core#lists).
+有关列表的更多信息，请参考 `dart:core` 文档中的列表部分。
 
 ## Sets
 
-A set in Dart is an unordered collection of unique items.
-Dart support for sets is provided by set literals and the
-[`Set`][] type.
+Dart 中的集合是一个无序的唯一项集合。Dart 对集合的支持由集合字面量和 `Set` 类型提供。
 
-Here is a simple Dart set, created using a set literal:
+下面是一个简单的 Dart 集合，使用集合字面量创建：
 
-<?code-excerpt "misc/lib/language_tour/built_in_types.dart (set-literal)"?>
 ```dart
 var halogens = {'fluorine', 'chlorine', 'bromine', 'iodine', 'astatine'};
 ```
 
-:::note
-Dart infers that `halogens` has the type `Set<String>`. If you try to add the
-wrong type of value to the set, the analyzer or runtime raises an error. For
-more information, read about
-[type inference.](/language/type-system#type-inference)
-:::
+> note
+> Dart 推断 `halogens` 的类型为 `Set<String>`。如果你尝试向集合中添加错误类型的值，分析器或运行时会抛出错误。有关更多信息，请阅读类型推断。
 
-To create an empty set, use `{}` preceded by a type argument,
-or assign `{}` to a variable of type `Set`:
+要创建一个空集合，请使用带有类型参数的 `{}`，或者将 `{}` 赋值给类型为 `Set` 的变量：
 
-<?code-excerpt "misc/lib/language_tour/built_in_types.dart (set-vs-map)"?>
 ```dart
 var names = <String>{};
 // Set<String> names = {}; // This works, too.
 // var names = {}; // Creates a map, not a set.
 ```
 
-:::note Set or map?
-The syntax for map literals is similar to that for set
-literals. Because map literals came first, `{}` defaults to the `Map` type. If
-you forget the type annotation on `{}` or the variable it's assigned to, then
-Dart creates an object of type `Map<dynamic, dynamic>`.
-:::
+> Set 还是 Map?
+> 映射字面量的语法与集合字面量类似。因为映射字面量先出现，所以 `{}` 默认是 `Map` 类型。如果你忘记了 `{}` 的类型注释或它所赋值的变量，那么 Dart 会创建一个类型为 `Map<dynamic, dynamic>` 的对象。
 
-Add items to an existing set using the `add()` or `addAll()` methods:
+使用 `add()` 或 `addAll()` 方法向已有集合中添加项：
 
-<?code-excerpt "misc/lib/language_tour/built_in_types.dart (set-add-items)"?>
 ```dart
 var elements = <String>{};
 elements.add('fluorine');
 elements.addAll(halogens);
 ```
 
-Use `.length` to get the number of items in the set:
+使用 `.length` 获取集合中的项数：
 
-<?code-excerpt "misc/test/language_tour/built_in_types_test.dart (set-length)"?>
 ```dart
 var elements = <String>{};
 elements.add('fluorine');
@@ -103,10 +87,8 @@ elements.addAll(halogens);
 assert(elements.length == 5);
 ```
 
-To create a set that's a compile-time constant,
-add `const` before the set literal:
+要创建一个编译时常量集合，在集合字面量前加上 `const`：
 
-<?code-excerpt "misc/lib/language_tour/built_in_types.dart (const-set)"?>
 ```dart
 final constantSet = const {
   'fluorine',
@@ -118,19 +100,12 @@ final constantSet = const {
 // constantSet.add('helium'); // This line will cause an error.
 ```
 
-For more information about sets, refer to the Sets section of the
-[`dart:core` documentation](/libraries/dart-core#sets).
-
 ## Maps
 
-In general, a map is an object that associates keys and values. Both
-keys and values can be any type of object. Each *key* occurs only once,
-but you can use the same *value* multiple times. Dart support for maps
-is provided by map literals and the [`Map`][] type.
+一般来说，映射是一个将键和值关联起来的对象。键和值都可以是任何类型的对象。每个*键*只能出现一次，但你可以多次使用同一个*值*。Dart 对映射的支持由映射字面量和 `Map` 类型提供。
 
-Here are a couple of simple Dart maps, created using map literals:
+以下是使用映射字面量创建的几个简单的 Dart 映射：
 
-<?code-excerpt "misc/lib/language_tour/built_in_types.dart (map-literal)"?>
 ```dart
 var gifts = {
   // Key:    Value
@@ -146,16 +121,11 @@ var nobleGases = {
 };
 ```
 
-:::note
-Dart infers that `gifts` has the type `Map<String, String>` and `nobleGases`
-has the type `Map<int, String>`. If you try to add the wrong type of value to
-either map, the analyzer or runtime raises an error. For more information,
-read about [type inference][].
-:::
+> note
+> Dart 推断 `gifts` 的类型为 `Map<String, String>`，而 `nobleGases` 的类型为 `Map<int, String>`。如果你尝试向任意一个映射添加错误类型的值，分析器或运行时会报错。欲了解更多信息，请阅读类型推断。
 
-You can create the same objects using a Map constructor:
+你可以使用 Map 构造函数创建相同的对象：
 
-<?code-excerpt "misc/lib/language_tour/built_in_types.dart (map-constructor)"?>
 ```dart
 var gifts = Map<String, String>();
 gifts['first'] = 'partridge';
@@ -168,50 +138,40 @@ nobleGases[10] = 'neon';
 nobleGases[18] = 'argon';
 ```
 
-:::note
-If you come from a language like C# or Java, you might expect to see `new Map()` 
-instead of just `Map()`. In Dart, the `new` keyword is optional.
-For details, see [Using constructors][].
-:::
+> note
+> 如果你来自 C# 或 Java 等语言，你可能会期望看到 `new Map()` 而不是仅仅 `Map()`。在 Dart 中，`new` 关键字是可选的。详情请参阅 使用构造函数
 
-Add a new key-value pair to an existing map
-using the subscript assignment operator (`[]=`):
+使用下标赋值运算符 (`[]=`) 向现有映射添加新的键值对：
 
-<?code-excerpt "misc/lib/language_tour/built_in_types.dart (map-add-item)"?>
 ```dart
 var gifts = {'first': 'partridge'};
 gifts['fourth'] = 'calling birds'; // Add a key-value pair
 ```
 
-Retrieve a value from a map using the subscript operator (`[]`):
+使用下标运算符 (`[]`) 从映射中检索值：
 
-<?code-excerpt "misc/test/language_tour/built_in_types_test.dart (map-retrieve-item)"?>
 ```dart
 var gifts = {'first': 'partridge'};
 assert(gifts['first'] == 'partridge');
 ```
 
-If you look for a key that isn't in a map, you get `null` in return:
+如果你查找一个不在映射中的键，会返回 `null`：
 
-<?code-excerpt "misc/test/language_tour/built_in_types_test.dart (map-missing-key)"?>
 ```dart
 var gifts = {'first': 'partridge'};
 assert(gifts['fifth'] == null);
 ```
 
-Use `.length` to get the number of key-value pairs in the map:
+使用 `.length` 获取映射中键值对的数量：
 
-<?code-excerpt "misc/test/language_tour/built_in_types_test.dart (map-length)"?>
 ```dart
 var gifts = {'first': 'partridge'};
 gifts['fourth'] = 'calling birds';
 assert(gifts.length == 2);
 ```
 
-To create a map that's a compile-time constant,
-add `const` before the map literal:
+要创建一个编译时常量的映射，在映射字面量前添加 `const`：
 
-<?code-excerpt "misc/lib/language_tour/built_in_types.dart (const-map)"?>
 ```dart
 final constantMap = const {
   2: 'helium',
@@ -222,70 +182,48 @@ final constantMap = const {
 // constantMap[2] = 'Helium'; // This line will cause an error.
 ```
 
-For more information about maps, refer to the Maps section of the
-[`dart:core` documentation](/libraries/dart-core#maps).
-
 ## Operators
 
 ### Spread operators
 
-Dart supports the **spread operator** (`...`) and the
-**null-aware spread operator** (`...?`) in list, map, and set literals.
-Spread operators provide a concise way to insert multiple values into a collection.
+Dart 支持在列表、映射和集合字面量中使用 **展开运算符** (`...`) 和 **空安全展开运算符** (`...?`)。
+展开运算符提供了一种简洁的方法将多个值插入集合中。
 
-For example, you can use the spread operator (`...`) to insert
-all the values of a list into another list:
+例如，你可以使用展开运算符 (`...`) 将一个列表中的所有值插入到另一个列表中：
 
-<?code-excerpt "misc/test/language_tour/built_in_types_test.dart (list-spread)"?>
 ```dart
 var list = [1, 2, 3];
 var list2 = [0, ...list];
 assert(list2.length == 4);
 ```
 
-If the expression to the right of the spread operator might be null,
-you can avoid exceptions by using a null-aware spread operator (`...?`):
+如果展开运算符右侧的表达式可能为 null，你可以使用空安全展开运算符 (`...?`) 来避免异常：
 
-<?code-excerpt "misc/test/language_tour/built_in_types_test.dart (list-null-spread)"?>
 ```dart
 var list2 = [0, ...?list];
 assert(list2.length == 1);
 ```
 
-For more details and examples of using the spread operator, see the
-[spread operator proposal.][spread proposal]
-
-<a id="collection-operators"></a>
 ### Control-flow operators
 
-Dart offers **collection if** and **collection for** for use in list, map,
-and set literals. You can use these operators to build collections using
-conditionals (`if`) and repetition (`for`).
+Dart 提供了 **集合 if** 和 **集合 for** 用于列表、映射和集合字面量中。你可以使用这些运算符通过条件语句 (`if`) 和循环 (`for`) 来构建集合。
 
-Here's an example of using **collection if**
-to create a list with three or four items in it:
+下面是一个使用 **集合 if** 创建包含三或四个项目的列表的示例：
 
-<?code-excerpt "misc/test/language_tour/built_in_types_test.dart (list-if)"?>
 ```dart
 var nav = ['Home', 'Furniture', 'Plants', if (promoActive) 'Outlet'];
 ```
 
-Dart also supports [if-case][] inside collection literals:
+Dart 还支持在集合字面量中使用 if-case：
 
 ```dart
 var nav = ['Home', 'Furniture', 'Plants', if (login case 'Manager') 'Inventory'];
 ```
 
-Here's an example of using **collection for**
-to manipulate the items of a list before
-adding them to another list:
+下面是一个使用 **集合 for** 在将列表项添加到另一个列表之前对其进行操作的示例：
 
-<?code-excerpt "misc/test/language_tour/built_in_types_test.dart (list-for)"?>
 ```dart
 var listOfInts = [1, 2, 3];
 var listOfStrings = ['#0', for (var i in listOfInts) '#$i'];
 assert(listOfStrings[1] == '#1');
 ```
-
-For more details and examples of using collection `if` and `for`, see the
-[control flow collections proposal.][collections proposal]
