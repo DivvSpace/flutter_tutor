@@ -1,11 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_tutor/pages/phone_content_page.dart';
 import 'package:flutter_tutor/providers/content_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -67,16 +63,8 @@ class _MainListViewWidgetState extends State<MainListViewWidget> {
                           return GestureDetector(
                             onTap: () {
                               _selectedIndexTitle.value = e['title'];
-                              if (Platform.isMacOS) {
-                                Provider.of<ContentProvider>(context, listen: false)
-                                    .changeMdContent(mdpath: e['mdName']);
-                              } else if (Platform.isIOS || Platform.isAndroid) {
-                                Navigator.of(context).push(CupertinoPageRoute(
-                                  builder: (context) {
-                                    return PhoneContentPage(mdPath: e['mdName'], title: e['title'],);
-                                  },
-                                ));
-                              }
+                              Provider.of<ContentProvider>(context, listen: false)
+                                  .changeMdContent(mdpath: e['mdName'], mdTitle: e['title']);
                             },
                             child: _buildValueListenBuild(e),
                           );
@@ -129,18 +117,9 @@ class _MainListViewWidgetState extends State<MainListViewWidget> {
           child: GestureDetector(
             onTap: () {
               _selectedIndexTitle.value = item['title'];
-
-              if (Platform.isMacOS) {
-                Provider.of<ContentProvider>(context, listen: false).changeMdContent(mdpath: item['mdName']);
-              } else if (Platform.isIOS || Platform.isAndroid) {
-                Navigator.of(context).push(CupertinoPageRoute(
-                  builder: (context) {
-                    return PhoneContentPage(mdPath: item['mdName'], title: item['title'],);
-                  },
-                ));
-              }
-
-              debugPrint('tap on : ${item['title'] ?? ""}');
+              Provider.of<ContentProvider>(context, listen: false)
+                  .changeMdContent(mdpath: item['mdName'], mdTitle: item['title']);
+              debugPrint('[tap on] : ${item['title'] ?? ""}');
             },
             child: _buildValueListenBuild(item),
           ),
