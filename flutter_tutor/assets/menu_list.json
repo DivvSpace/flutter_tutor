@@ -26,6 +26,35 @@
                         "mdName": "librariesimports.md"
                     }
                 ]
+            }, 
+            {
+                "title": "类型",
+                "menus": [
+                    {
+                        "title": "内置类型",
+                        "mdName": "builtintypes.md"
+                    },
+                    {
+                        "title": "记录",
+                        "mdName": "records.md"
+                    },
+                    {
+                        "title": "集合",
+                        "mdName": "collections.md"
+                    },
+                    {
+                        "title": "泛型",
+                        "mdName": "generics.md"
+                    },
+                    {
+                        "title": "typedefs",
+                        "mdName": "typedefs.md"
+                    },
+                    {
+                        "title": "类型系统",
+                        "mdName": "typesystem.md"
+                    }
+                ]
             }
         ]
     
