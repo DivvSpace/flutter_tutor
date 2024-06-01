@@ -15,12 +15,17 @@ class MacMainPage extends StatelessWidget {
       body: ChangeNotifierProvider(
         create: (context) => ContentProvider(),
         child: Row(children: [
-          Container(color: const Color.fromARGB(255, 228, 226, 226), width: 200,child: const MainListViewWidget()),
-          Consumer<ContentProvider>(
-            builder:(context, contentProvider, child) {
-              return ContentWidget(mdFilePath:'assets/markdown/${contentProvider.mdPath}');
-            }
+          Container(
+            color: const Color.fromARGB(255, 228, 226, 226),
+            constraints: const BoxConstraints(
+              minWidth: 200,
+              maxWidth: 250
+            ),
+            child: const MainListViewWidget(),
           ),
+          Consumer<ContentProvider>(builder: (context, contentProvider, child) {
+            return ContentWidget(mdFilePath: 'assets/markdown/${contentProvider.mdPath}');
+          }),
         ]),
       ),
     );

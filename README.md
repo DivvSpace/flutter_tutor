@@ -35,8 +35,8 @@ Types:
 - [x] Records
 - [x] Collections
 - [x] Generics
-- [ ] Typedefs
-- [ ] Type system
+- [x] Typedefs
+- [x] Type system
 
 Patterns
 

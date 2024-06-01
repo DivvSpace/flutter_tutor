@@ -55,6 +55,36 @@
                         "mdName": "typesystem.md"
                     }
                 ]
+            },
+            {
+                "title": "模式匹配",
+                "menus": [
+                    {
+                        "title": "Pattern usage",
+                        "mdName": "pattern_overview_usage.md"
+                    },
+                    {
+                        "title": "Pattern types",
+                        "mdName": "pattern_types.md"
+                    }
+                ]
+            },
+            {
+                "title":"Functions",
+                "mdName": "functions.md"
+            },
+            {
+                "title": "控制流",
+                "menus": [
+                    {
+                        "title": "Loops",
+                        "mdName":"loops.md"
+                    },
+                    {
+                        "title": "Branches",
+                        "mdName": "branches.md"
+                    }
+                ]
             }
         ]
     
