@@ -40,8 +40,8 @@ Types:
 
 Patterns
 
-- [ ] Overview & usage
-- [ ] Pattern types
+- [x] Overview & usage
+- [x] Pattern types
 
 
 
