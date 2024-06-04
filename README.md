@@ -45,7 +45,7 @@ Patterns
 
 
 
-- [ ] Functions
+- [x] Functions
 
 Control flow
 
