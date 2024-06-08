@@ -85,6 +85,44 @@
                         "mdName": "branches.md"
                     }
                 ]
+            },
+            {
+                "title":"Error Handling",
+                "mdName": "error_handling.md"
+            },
+            {
+                "title": "Classes & objects",
+                "menus": [
+                    {
+                        "title": "Classes",
+                        "mdName": "classes.md"
+                    },{
+                        "title": "Constructors",
+                        "mdName": "constructors.md"
+                    },{
+                        "title": "Methods",
+                        "mdName": "methods.md"
+                    },{
+                        "title": "Extend a class",
+                        "mdName": "extend_class.md"
+                    },{
+                        "title": "Mixins",
+                        "mdName": "mixins.md"
+                    },{
+                        "title": "Enums",
+                        "mdName": "enums.md"
+                    },{
+                        "title": "Extension methods",
+                        "mdName": "extension_methods.md"
+                    },{
+                        "title": "Extension types",
+                        "mdName": "extension_types.md"
+                    },{
+                        "title": "Callable objects",
+                        "mdName": "callable_objects.md"
+                    }
+
+                ]
             }
         ]
     
