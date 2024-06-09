@@ -2,8 +2,24 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_tutor/mac_main_page.dart';
 import 'package:flutter_tutor/phone_main_page.dart';
+import 'package:window_manager/window_manager.dart';
 
-void main() {
+void main() async {
+  if (Platform.isMacOS) {
+    WidgetsFlutterBinding.ensureInitialized();
+    await windowManager.ensureInitialized();
+
+    WindowOptions windowOptions = const WindowOptions(
+      minimumSize: Size(700, 500),
+      center: true,
+      backgroundColor: Colors.white,
+    );
+    windowManager.waitUntilReadyToShow(windowOptions, () async {
+      await windowManager.show();
+      await windowManager.focus();
+    });
+  }
+
   runApp(const MyApp());
 }
 
@@ -32,20 +48,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   void initState() {
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     if (Platform.isMacOS) {
-        return const MacMainPage();
+      return const MacMainPage();
     } else if (Platform.isIOS || Platform.isAndroid) {
-        return const PhoneMainPage();
+      return const PhoneMainPage();
     }
     return const Placeholder();
   }
 }
-
-
