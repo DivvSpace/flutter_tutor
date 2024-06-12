@@ -1,4 +1,10 @@
 # flutter_tutor
+开发环境：
+
+Flutter SDK： 3.19.6
+
+Dart SDK： 3.3.4
+
 flutter知识学习app，目前适配机型：
 
 - [x] Mac

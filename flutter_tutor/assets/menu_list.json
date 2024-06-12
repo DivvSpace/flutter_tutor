@@ -94,31 +94,31 @@
                 "title": "Classes & objects",
                 "menus": [
                     {
-                        "title": "Classes",
+                        "title": "类",
                         "mdName": "classes.md"
                     },{
-                        "title": "Constructors",
+                        "title": "构造方法",
                         "mdName": "constructors.md"
                     },{
-                        "title": "Methods",
+                        "title": "方法",
                         "mdName": "methods.md"
                     },{
-                        "title": "Extend a class",
+                        "title": "继承",
                         "mdName": "extend_class.md"
                     },{
-                        "title": "Mixins",
+                        "title": "混入（Mixin）",
                         "mdName": "mixins.md"
                     },{
-                        "title": "Enums",
+                        "title": "枚举",
                         "mdName": "enums.md"
                     },{
-                        "title": "Extension methods",
+                        "title": "扩展方法",
                         "mdName": "extension_methods.md"
                     },{
-                        "title": "Extension types",
+                        "title": "扩展类型",
                         "mdName": "extension_types.md"
                     },{
-                        "title": "Callable objects",
+                        "title": "可调用对象",
                         "mdName": "callable_objects.md"
                     }
 
