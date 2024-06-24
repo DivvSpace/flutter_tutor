@@ -5,6 +5,15 @@ import 'package:flutter_tutor/phone_main_page.dart';
 import 'package:window_manager/window_manager.dart';
 
 void main() async {
+
+  FlutterError.onError = (FlutterErrorDetails details) {
+    FlutterError.presentError(details);
+  };
+
+  ErrorWidget.builder = (FlutterErrorDetails flutterErrorDetails) {
+    return Container();
+  };
+  
   if (Platform.isMacOS) {
     WidgetsFlutterBinding.ensureInitialized();
     await windowManager.ensureInitialized();
